@@ -11,15 +11,21 @@ namespace WardrobeApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tblWardrobe
     {
         public int WardrobeID { get; set; }
+        [Display(Name = "Name")]
         public string ClothingName { get; set; }
         public string PhotoLocaion { get; set; }
+        [Display(Name = "Color")]
         public string ClothingColor { get; set; }
+        [Display(Name = "Type")]
         public int TypeID { get; set; }
+        [Display(Name = "Season")]
         public int SeasonID { get; set; }
+        [Display(Name = "Occasion")]
         public int OccasionID { get; set; }
         public Nullable<int> OutfitID { get; set; }
     
