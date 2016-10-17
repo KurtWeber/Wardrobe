@@ -31,3 +31,14 @@ textarea {
 #Woodgrain {
     background-image: url('../Images/WoodGrain.jpg');
 }
+#JumbotronImage {
+    width: 200px;
+    height: 200px;
+    border-color: black;
+    border: solid 1px;
+    margin-top: -30px;    
+}
+#ContactMe {
+    font-size: 20px;
+    margin-top: 40px;
+}
