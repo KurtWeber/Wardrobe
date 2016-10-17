@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WardrobeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblOccasion">
+    <Key>
+      <PropertyRef Name="OccasionID" />
+    </Key>
+    <Property Name="OccasionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OccasionName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblOutfits" Relationship="Self.FK_tblOutfit_tblOccasion" FromRole="tblOccasion" ToRole="tblOutfit" />
+    <NavigationProperty Name="tblWardrobes" Relationship="Self.FK_tblWardrobe_tblOccasion" FromRole="tblOccasion" ToRole="tblWardrobe" />
+  </EntityType>
+  <EntityType Name="tblOutfit">
+    <Key>
+      <PropertyRef Name="OutfitID" />
+    </Key>
+    <Property Name="OutfitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OutfitName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <Property Name="SeasonID" Type="Int32" Nullable="false" />
+    <Property Name="OccasionID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblOccasion" Relationship="Self.FK_tblOutfit_tblOccasion" FromRole="tblOutfit" ToRole="tblOccasion" />
+    <NavigationProperty Name="tblSeason" Relationship="Self.FK_tblOutfit_tblSeason" FromRole="tblOutfit" ToRole="tblSeason" />
+    <NavigationProperty Name="tblType" Relationship="Self.FK_tblOutfit_tblType" FromRole="tblOutfit" ToRole="tblType" />
+    <NavigationProperty Name="tblWardrobes" Relationship="Self.FK_tblWardrobe_tblOutfit" FromRole="tblOutfit" ToRole="tblWardrobe" />
+  </EntityType>
+  <EntityType Name="tblSeason">
+    <Key>
+      <PropertyRef Name="SeasonID" />
+    </Key>
+    <Property Name="SeasonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SeasonName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblOutfits" Relationship="Self.FK_tblOutfit_tblSeason" FromRole="tblSeason" ToRole="tblOutfit" />
+    <NavigationProperty Name="tblWardrobes" Relationship="Self.FK_tblWardrobe_tblSeason" FromRole="tblSeason" ToRole="tblWardrobe" />
+  </EntityType>
+  <EntityType Name="tblType">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblOutfits" Relationship="Self.FK_tblOutfit_tblType" FromRole="tblType" ToRole="tblOutfit" />
+    <NavigationProperty Name="tblWardrobes" Relationship="Self.FK_tblWardrobe_tblType" FromRole="tblType" ToRole="tblWardrobe" />
+  </EntityType>
+  <EntityType Name="tblWardrobe">
+    <Key>
+      <PropertyRef Name="WardrobeID" />
+    </Key>
+    <Property Name="WardrobeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClothingName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="PhotoLocaion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ClothingColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <Property Name="SeasonID" Type="Int32" Nullable="false" />
+    <Property Name="OccasionID" Type="Int32" Nullable="false" />
+    <Property Name="OutfitID" Type="Int32" />
+    <NavigationProperty Name="tblOccasion" Relationship="Self.FK_tblWardrobe_tblOccasion" FromRole="tblWardrobe" ToRole="tblOccasion" />
+    <NavigationProperty Name="tblOutfit" Relationship="Self.FK_tblWardrobe_tblOutfit" FromRole="tblWardrobe" ToRole="tblOutfit" />
+    <NavigationProperty Name="tblSeason" Relationship="Self.FK_tblWardrobe_tblSeason" FromRole="tblWardrobe" ToRole="tblSeason" />
+    <NavigationProperty Name="tblType" Relationship="Self.FK_tblWardrobe_tblType" FromRole="tblWardrobe" ToRole="tblType" />
+  </EntityType>
+  <Association Name="FK_tblOutfit_tblOccasion">
+    <End Role="tblOccasion" Type="Self.tblOccasion" Multiplicity="1" />
+    <End Role="tblOutfit" Type="Self.tblOutfit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOccasion">
+        <PropertyRef Name="OccasionID" />
+      </Principal>
+      <Dependent Role="tblOutfit">
+        <PropertyRef Name="OccasionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblWardrobe_tblOccasion">
+    <End Role="tblOccasion" Type="Self.tblOccasion" Multiplicity="1" />
+    <End Role="tblWardrobe" Type="Self.tblWardrobe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOccasion">
+        <PropertyRef Name="OccasionID" />
+      </Principal>
+      <Dependent Role="tblWardrobe">
+        <PropertyRef Name="OccasionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOutfit_tblSeason">
+    <End Role="tblSeason" Type="Self.tblSeason" Multiplicity="1" />
+    <End Role="tblOutfit" Type="Self.tblOutfit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSeason">
+        <PropertyRef Name="SeasonID" />
+      </Principal>
+      <Dependent Role="tblOutfit">
+        <PropertyRef Name="SeasonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOutfit_tblType">
+    <End Role="tblType" Type="Self.tblType" Multiplicity="1" />
+    <End Role="tblOutfit" Type="Self.tblOutfit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblType">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="tblOutfit">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblWardrobe_tblOutfit">
+    <End Role="tblOutfit" Type="Self.tblOutfit" Multiplicity="0..1" />
+    <End Role="tblWardrobe" Type="Self.tblWardrobe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOutfit">
+        <PropertyRef Name="OutfitID" />
+      </Principal>
+      <Dependent Role="tblWardrobe">
+        <PropertyRef Name="OutfitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblWardrobe_tblSeason">
+    <End Role="tblSeason" Type="Self.tblSeason" Multiplicity="1" />
+    <End Role="tblWardrobe" Type="Self.tblWardrobe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSeason">
+        <PropertyRef Name="SeasonID" />
+      </Principal>
+      <Dependent Role="tblWardrobe">
+        <PropertyRef Name="SeasonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblWardrobe_tblType">
+    <End Role="tblType" Type="Self.tblType" Multiplicity="1" />
+    <End Role="tblWardrobe" Type="Self.tblWardrobe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblType">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="tblWardrobe">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WardrobeDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tblOccasions" EntityType="Self.tblOccasion" />
+    <EntitySet Name="tblOutfits" EntityType="Self.tblOutfit" />
+    <EntitySet Name="tblSeasons" EntityType="Self.tblSeason" />
+    <EntitySet Name="tblTypes" EntityType="Self.tblType" />
+    <EntitySet Name="tblWardrobes" EntityType="Self.tblWardrobe" />
+    <AssociationSet Name="FK_tblOutfit_tblOccasion" Association="Self.FK_tblOutfit_tblOccasion">
+      <End Role="tblOccasion" EntitySet="tblOccasions" />
+      <End Role="tblOutfit" EntitySet="tblOutfits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblWardrobe_tblOccasion" Association="Self.FK_tblWardrobe_tblOccasion">
+      <End Role="tblOccasion" EntitySet="tblOccasions" />
+      <End Role="tblWardrobe" EntitySet="tblWardrobes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOutfit_tblSeason" Association="Self.FK_tblOutfit_tblSeason">
+      <End Role="tblSeason" EntitySet="tblSeasons" />
+      <End Role="tblOutfit" EntitySet="tblOutfits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOutfit_tblType" Association="Self.FK_tblOutfit_tblType">
+      <End Role="tblType" EntitySet="tblTypes" />
+      <End Role="tblOutfit" EntitySet="tblOutfits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblWardrobe_tblOutfit" Association="Self.FK_tblWardrobe_tblOutfit">
+      <End Role="tblOutfit" EntitySet="tblOutfits" />
+      <End Role="tblWardrobe" EntitySet="tblWardrobes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblWardrobe_tblSeason" Association="Self.FK_tblWardrobe_tblSeason">
+      <End Role="tblSeason" EntitySet="tblSeasons" />
+      <End Role="tblWardrobe" EntitySet="tblWardrobes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblWardrobe_tblType" Association="Self.FK_tblWardrobe_tblType">
+      <End Role="tblType" EntitySet="tblTypes" />
+      <End Role="tblWardrobe" EntitySet="tblWardrobes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

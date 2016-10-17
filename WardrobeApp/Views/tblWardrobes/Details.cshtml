@@ -1,0 +1,74 @@
+﻿@model WardrobeApp.Models.tblWardrobe
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblWardrobe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClothingName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClothingName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoLocaion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhotoLocaion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClothingColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClothingColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblOccasion.OccasionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblOccasion.OccasionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblOutfit.OutfitName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblOutfit.OutfitName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblSeason.SeasonName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblSeason.SeasonName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblType.TypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblType.TypeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WardrobeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

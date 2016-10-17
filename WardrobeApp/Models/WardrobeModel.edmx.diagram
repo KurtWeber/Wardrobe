@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b43f3f5669b44cc5979425636a98edff" Name="Diagram1">
+        <EntityTypeShape EntityType="WardrobeDBModel.sysdiagram" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WardrobeDBModel.tblOccasion" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WardrobeDBModel.tblOutfit" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WardrobeDBModel.tblSeason" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WardrobeDBModel.tblType" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WardrobeDBModel.tblWardrobe" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="WardrobeDBModel.FK_tblOutfit_tblOccasion" ManuallyRouted="false" />
+        <AssociationConnector Association="WardrobeDBModel.FK_tblWardrobe_tblOccasion" ManuallyRouted="false" />
+        <AssociationConnector Association="WardrobeDBModel.FK_tblOutfit_tblSeason" ManuallyRouted="false" />
+        <AssociationConnector Association="WardrobeDBModel.FK_tblOutfit_tblType" ManuallyRouted="false" />
+        <AssociationConnector Association="WardrobeDBModel.FK_tblWardrobe_tblOutfit" ManuallyRouted="false" />
+        <AssociationConnector Association="WardrobeDBModel.FK_tblWardrobe_tblSeason" ManuallyRouted="false" />
+        <AssociationConnector Association="WardrobeDBModel.FK_tblWardrobe_tblType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
