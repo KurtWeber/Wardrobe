@@ -23,9 +23,7 @@ namespace WardrobeApp.Models
         public string ClothingColor { get; set; }
         [Display(Name = "Type")]
         public int TypeID { get; set; }
-        [Display(Name = "Season")]
         public int SeasonID { get; set; }
-        [Display(Name = "Occasion")]
         public int OccasionID { get; set; }
         public Nullable<int> OutfitID { get; set; }
     
