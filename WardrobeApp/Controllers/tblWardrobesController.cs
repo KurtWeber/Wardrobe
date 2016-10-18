@@ -14,7 +14,7 @@ namespace WardrobeApp.Controllers
     {
         private WardrobeDBEntities db = new WardrobeDBEntities();
 
-        //GET: tblWardrobe - Shoes View
+        //GET: tblWardrobe - Accessories View
         public ActionResult Accessories()
         {
             var tblWardrobes = db.tblWardrobes.Include(t => t.tblOccasion).Include(t => t.tblOutfit).Include(t => t.tblSeason).Include(t => t.tblType);
