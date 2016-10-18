@@ -14,6 +14,33 @@ namespace WardrobeApp.Controllers
     {
         private WardrobeDBEntities db = new WardrobeDBEntities();
 
+        //GET: tblWardrobe - Shoes View
+        public ActionResult Accessories()
+        {
+            var tblWardrobes = db.tblWardrobes.Include(t => t.tblOccasion).Include(t => t.tblOutfit).Include(t => t.tblSeason).Include(t => t.tblType);
+            return View(tblWardrobes.ToList());
+        }
+
+        //GET: tblWardrobe - Shoes View
+        public ActionResult Shoes()
+        {
+            var tblWardrobes = db.tblWardrobes.Include(t => t.tblOccasion).Include(t => t.tblOutfit).Include(t => t.tblSeason).Include(t => t.tblType);
+            return View(tblWardrobes.ToList());
+        }
+
+        //GET: tblWardrobe - Bottoms View
+        public ActionResult Bottoms()
+        {
+            var tblWardrobes = db.tblWardrobes.Include(t => t.tblOccasion).Include(t => t.tblOutfit).Include(t => t.tblSeason).Include(t => t.tblType);
+            return View(tblWardrobes.ToList());
+        }
+        //GET: tblWardrobe - Top View
+        public ActionResult Tops()
+        {
+            var tblWardrobes = db.tblWardrobes.Include(t => t.tblOccasion).Include(t => t.tblOutfit).Include(t => t.tblSeason).Include(t => t.tblType);
+            return View(tblWardrobes.ToList());
+        }
+
         // GET: tblWardrobes
         public ActionResult Index()
         {

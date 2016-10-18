@@ -299,6 +299,10 @@
     <Content Include="Views\tblOccasions\Details.cshtml" />
     <Content Include="Views\tblOccasions\Edit.cshtml" />
     <Content Include="Views\tblOccasions\Index.cshtml" />
+    <Content Include="Views\tblWardrobes\Tops.cshtml" />
+    <Content Include="Views\tblWardrobes\Bottoms.cshtml" />
+    <Content Include="Views\tblWardrobes\Shoes.cshtml" />
+    <Content Include="Views\tblWardrobes\Accessories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<WardrobeApp.Models.tblWardrobe>
+
+@{
+    ViewBag.Title = "Inventory";
+}
+
+<h2>Wardrobe Inventory</h2>
+
+<p>
+    @Html.ActionLink("Add New Item", "Create")  |
+    @Html.ActionLink("Home", "../Home/Index") |
+    @Html.ActionLink("View Inventory", "Index")
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.PhotoLocaion)*@
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClothingName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClothingColor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblOccasion.OccasionName)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.tblOutfit.OutfitName)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.tblSeason.SeasonName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblType.TypeName)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.tblType.TypeName == "Bottoms")
+        {
+            <tr>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.PhotoLocaion)*@
+                    @if (item.PhotoLocaion == null)
+                    {
+                        <img id="ThumbImage" src="../Images/Unavailable.png" />
+                    }
+                    else
+                    {
+                        <img id="ThumbImage" src=@item.PhotoLocaion />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClothingName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClothingColor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tblOccasion.OccasionName)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.tblOutfit.OutfitName)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.tblSeason.SeasonName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tblType.TypeName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.WardrobeID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.WardrobeID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.WardrobeID })
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
